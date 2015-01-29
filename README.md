@@ -13,7 +13,7 @@ Initiates the creation of DatabaseConnection.php file.<br>DatabaseConnection.php
 #InstallDO.php
 Responsible for installing the table from a pre-created sql file path=sql/tables_script.sql.
 
-further process can be understood on own.
-
+#AddQuestions.html
+Adds questions to the database table.The Record in the administrator table would be used to authenticate the admin which is not yet implemented but can be done easily. 
 
 
