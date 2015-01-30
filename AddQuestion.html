@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<meta charset="utf-8">
+<script type='text/javascript' src='/game/js/addQuestion.js'></script>
+
+<style>
+.is-hidden {
+  display: none;
+}
+
+.btn {
+  background: #ccc;
+  border-radius: 3px;
+  display: inline-block;
+  padding: 5px;
+}
+
+body {
+  padding: 40px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Add Question</h1>
+<form width="100%" id="questionForm" >
+<table>
+<tr>
+<td>
+<h2>Question  :</h2>&nbsp;
+</td>
+
+
+<td >
+<textarea id="question" name="question" required width="100%" maxlength="180" >
+</textarea>
+</td>
+</tr>
+<tr>
+<td>
+option 1 :
+</td>
+<td>
+<input type="text" id="option1" name="option1" maxlength="45" required>
+</td>
+
+</tr>
+<tr>
+<td>
+option 2 :
+</td>
+<td>
+<input type="text" id="option2" name="option2" maxlength="45" required>
+</td>
+
+</tr>
+
+<tr>
+<td>
+option 3 :
+</td>
+<td>
+<input type="text" id="option3" name="option3" maxlength="45" required>
+</td>
+
+</tr>
+
+<tr>
+<td>
+option 4 :
+</td>
+<td>
+<input type="text" id="option4" name="option4" maxlength="45" required>
+</td>
+
+</tr>
+<tr>
+<td>
+answer :
+</td>
+<td>
+<select name="selection" id="answer" required>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+<option value="3">Option 3</option>
+<option value="4">Option 4</option>        
+</select>
+</td>
+
+</tr>
+<tr >
+<td colspan="2">
+<input type="button" value="Add question" onclick="addQuestion()">
+</td>
+</tr>
+
+</table>
+<div width="200px" heigth="50px" id="statusdiv" class='js-fade is-hidden'></div>
+</body>

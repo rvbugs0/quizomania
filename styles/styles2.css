@@ -1,0 +1,214 @@
+@media only screen {
+	#logo {
+		float: left;
+		height: 65px;
+		width:150px;				margin: 23px 0 0;
+	}
+}
+
+
+
+@media only screen {
+	#social {
+		
+padding-top:10px;
+float: right;
+		height: 65px;
+		width: 140px;
+		
+		margin: 23px 0 0 50.0485908649174%;
+	
+
+}
+}
+
+@media only screen {
+	#mainblock {
+		float: left;
+		height: 438px;
+		clear: both;
+		width: 53.54810495626822%;
+				margin: 41px 0 0 23.227405247813408%;
+	}
+}
+
+
+@media only screen {
+	#footer {
+
+
+text-align:center;		float: left;
+		height: 53px;
+		clear: both;
+		width: 89.31098153547133%;
+		color:#FFFFFF;		margin: 38px 0 0 5.123420796890184%;
+
+
+	}
+}
+
+#facebook
+{
+height:40px;
+width:40px;
+
+}
+#gmail
+{
+height:40px;
+width:40px;
+
+}
+#twitter
+{
+height:40px;
+width:40px;
+
+}
+
+a:link {
+    color: #AB1;
+}
+
+/* visited link */
+a:visited {
+    color: #AB1;
+}
+
+/* mouse over link */
+a:hover {
+    color: #AB1;
+}
+
+/* selected link */
+a:active {
+    color: #AB1;
+}
+ 
+
+.loadingdiv
+{
+
+    left: 50%;
+    top: 61%;
+ 
+visibility:hidden;
+}
+
+@media only screen and (max-width: 640px) {
+
+#logo {
+width: 24.3896484375%;
+margin: 6px 0 0 6.25%;
+
+float:left;
+}
+
+
+#social 
+{
+width: 25.556640625%;
+margin: 6px 0 0 37.609375%;
+
+
+visibility:hidden;
+}
+
+#mainblock {
+width: 87.96875%;
+height: 420px;
+margin: 28px 0 0 5.9375%;
+}
+
+
+}
+
+
+@media only screen and (max-width: 480px) {
+	
+
+#logo{
+width: 24.390104166666667%;
+
+margin: 6px 0 0 4.25%;
+}
+
+
+#social {
+width: 25.556640625%;
+margin: 6px 0 0 37.609375%;
+
+visibility:hidden;
+}
+
+
+#mainblock {
+height:auto;
+width: 85.498046875%;
+
+height: 420px;
+margin: 28px 0 0 5.9375%;
+
+}
+
+#footer {
+width: 85.2490234375%;
+
+margin:30px 0 0 7.25%;
+text-align:center;
+padding-top:25px;
+padding-bottom:10px;
+
+}
+
+
+#logoimage
+{
+width:300px;
+}
+
+}
+
+@media only screen and (max-width: 320px) 
+{
+#logo
+{
+
+width: 24.3896484375%;
+
+margin: 6px 0 0 6.25%;
+
+}
+
+#logoimage
+{
+width:280px;
+}
+
+#social {
+width: 25.556640625%;
+
+margin: 6px 0 0 37.609375%;
+
+visibility:hidden;
+}
+
+
+#mainblock {
+width: 87.96875%;
+height: 550px;
+margin: 28px 0 0 5.625%;
+}
+
+#footer {
+width: 87.65625%;
+
+margin: 30px 0 0 6.25%;
+
+text-align:center;
+padding-top:60px;
+padding-bottom:10px;
+}
+
+
+}
