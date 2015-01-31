@@ -18,7 +18,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
 <script type='text/javascript' src='js/gameplay.js'></script>
 
 <script type='text/javascript' src='js/Question.js'></script>
-<script type='text/javascript' src='js/timer.js'></script>
+
 <!--      ---------------------------------------- logo-------------------------------------------------------    -->	
 
 

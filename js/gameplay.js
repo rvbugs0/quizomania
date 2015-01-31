@@ -12,9 +12,12 @@ var exit=user.replace(fal,"");
 
 
 
+var countdownTimer=null;
 
 function startGame()
 {
+
+
 document.getElementById("option1").style.display="none";
 document.getElementById("option2").style.display="none";
 document.getElementById("option3").style.display="none";
@@ -61,10 +64,6 @@ document.getElementById("circularG").style.width="500px";
 document.getElementById("circularG").style.float="left";
 
 }
-
-
-
-
 DisplayQuestion(0);
 currentQuestion=0;
 }
@@ -86,6 +85,8 @@ function DisplayQuestion(y)
 var numberOfQuestions=questions.length;
 if(y<numberOfQuestions)
 {
+seconds=30;
+countdownTimer = setInterval('secondPassed()', 1000);
 document.getElementById("circularG").style.visibility="hidden";
 document.getElementById("content").style.visibility="visible";
 document.getElementById("startButton").style.visibility="hidden";
@@ -108,11 +109,12 @@ document.getElementById("qid").innerHTML=questions[y].code;
 }
 else
 {
+clearInterval(countdownTimer);
 var s1="<?php $c=DatabaseConnection::getConnection()";
 var s2="$sql=select score from participants where email=\"$_POST['username']\"";
 var s3="$rs=$c->query($sql);foreach($rs as $row){print $row['score'];}$c=null;?>";
 document.getElementById("question").innerHTML="Completed" ; 
-
+document.getElementById("countdown").innerHTML="" ; 
 
 
 
@@ -132,6 +134,7 @@ document.getElementById("option4").style.visibility="hidden";
 function submitAnswer(answerid)
 {
 var answer=answerid.toString();
+
 if(answer=="option1")
 {
 ans=1;
@@ -148,17 +151,21 @@ if(answer=="option4")
 {
 ans=4;
 }
+if(answer=="wrong")
+{
+ans=-1;
+}
 
 var qid=document.getElementById("qid");
+
 var qcode=qid.innerHTML.trim();
 
 if(window.XMLHttpRequest)
 {
+clearInterval(countdownTimer);
 document.getElementById("question").innerHTML="submitting your answer....";
 
-
-
- ax=new XMLHttpRequest();
+ax=new XMLHttpRequest();
 var url="submitAnswer.php?code="+encodeURI(qcode)+"&answer="+encodeURI(ans)+"&user="+encodeURI(exit);
 ax.open("GET",url,true);
 ax.onreadystatechange=responseReceived;
@@ -188,3 +195,38 @@ alert("cannot proceed further ,connection error");
 }
 }
 
+
+
+
+
+
+/* ---------------timer zone--------------*/
+
+
+var seconds = 30;
+function secondPassed() {
+    var minutes = Math.round((seconds - 30)/60);
+    var remainingSeconds = seconds % 60;
+    if (remainingSeconds < 10) 
+{
+        remainingSeconds = "0" + remainingSeconds;  
+    }
+    document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
+    if (seconds == 0) 
+{
+     //   clearInterval(countdownTimer);
+        document.getElementById('countdown').innerHTML = "Oops!";
+document.getElementById("option1").style.visibility="hidden";
+document.getElementById("option2").style.visibility="hidden";
+document.getElementById("option3").style.visibility="hidden";
+document.getElementById("option4").style.visibility="hidden";
+
+submitAnswer("wrong");
+
+//seconds=30;
+} 
+else {
+        seconds--;
+    }
+}
+ 
