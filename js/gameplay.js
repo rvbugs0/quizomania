@@ -27,7 +27,7 @@ document.getElementById("option4").style.display="none";
 document.getElementById("content").style.visibility="hidden";
 document.getElementById("circularG").style.visibility="visible";
 ax1=new XMLHttpRequest();
-var url="GetQuestions.php?user="+encodeURI(exit);
+var url="GetQuestions.php";
 
 ax1.open("GET",url,true);
 ax1.send();
@@ -110,9 +110,6 @@ document.getElementById("qid").innerHTML=questions[y].code;
 else
 {
 clearInterval(countdownTimer);
-var s1="<?php $c=DatabaseConnection::getConnection()";
-var s2="$sql=select score from participants where email=\"$_POST['username']\"";
-var s3="$rs=$c->query($sql);foreach($rs as $row){print $row['score'];}$c=null;?>";
 document.getElementById("question").innerHTML="Completed" ; 
 document.getElementById("countdown").innerHTML="" ; 
 
@@ -166,7 +163,7 @@ clearInterval(countdownTimer);
 document.getElementById("question").innerHTML="submitting your answer....";
 
 ax=new XMLHttpRequest();
-var url="submitAnswer.php?code="+encodeURI(qcode)+"&answer="+encodeURI(ans)+"&user="+encodeURI(exit);
+var url="submitAnswer.php?code="+encodeURI(qcode)+"&answer="+encodeURI(ans);
 ax.open("GET",url,true);
 ax.onreadystatechange=responseReceived;
 ax.send();

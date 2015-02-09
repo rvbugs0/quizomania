@@ -1,9 +1,19 @@
 <?php
 include("DatabaseConnection.php");
 $attempted=0;
-$user=$_GET["user"];
-$c=DatabaseConnection::getConnection();
+if(session_id()=="" && !isset($_SESSION)) session_start();
+if(!isset($_SESSION["username"]))
+{
+    include("InvalidAccess.php");
+    die("");
+}
+
+
+$user=$_SESSION["username"];
 print "[";
+try{
+$c=DatabaseConnection::getConnection();
+
 
 $rs1=$c->query("select count(*) as cnt from question_table");
 foreach($rs1 as $row1)
@@ -40,6 +50,16 @@ print ",";
 $x++;
 
 
+}
+$c=null;
+}
+catch(PDOException $p)
+{
+print $pe->getMessage();
+}
+catch(Exception $p)
+{
+print $e->getMessage();
 }
 print "]";
 ?>

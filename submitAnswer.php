@@ -4,7 +4,14 @@ $preAttempted=null;
 $newAttempted=null;
 $newScore=null;
 $preScore=null;
-$user=$_GET["user"];
+if(session_id()=="" && !isset($_SESSION)) session_start();
+if(!isset($_SESSION["username"]))
+{
+    include("InvalidAccess.php");
+    die("");
+}
+
+$user=$_SESSION["username"];
 $code=$_GET["code"];
 $answer=$_GET["answer"];
 try
