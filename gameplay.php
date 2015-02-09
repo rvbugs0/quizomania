@@ -3,6 +3,13 @@
 
 if(isset($_POST['username']) && isset($_POST['password']))
 {
+  if(session_id()=="" && !isset($_SESSION)) session_start();
+    if(!isset($_SESSION["username"]))
+    {
+        include("InvalidAccess.php");
+        die("");
+    }
+
 ?>
 <!DOCTYPE html>
 <html>

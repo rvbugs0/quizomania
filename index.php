@@ -19,8 +19,10 @@ if(file_exists("DatabaseConnection.php"))
 <script type='text/javascript' src='js/RegistrationForm.js'></script>
 <script type='text/javascript' src='js/gameplay.js'></script>
 <script type='text/javascript' src='js/form.js'></script>
-<script type='text/javascript' src='js/login.js'></script>
 
+<!--
+<script type='text/javascript' src='js/login.js'></script>
+-->
    </head>
 
 

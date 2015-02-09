@@ -12,20 +12,30 @@ $password=$_POST['password'];
 }
 try
 {
+
+
 $c=DatabaseConnection::getConnection();
 
 $rs=$c->query("select * from participants where email=\"$username\"");
+$z=0;
 foreach($rs as $row)
 {
 if($row['password']==$password)
 {
-print "{\"success\":true}";
+//print "{\"success\":true}";
+if(session_id()=="" && !isset($_SESSION)) session_start();    $_SESSION["username"]=$username;
+include("gameplay.php");
 }
 else
 {
-print "{\"success\":false}";
+//print "{\"success\":false}";
+   include("InvalidAccess.php");
 }
-
+$z++;
+}
+if($z==0)
+{
+   include("InvalidAccess.php");
 }
 $c=null;
 }
