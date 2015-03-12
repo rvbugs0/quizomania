@@ -1,6 +1,8 @@
 # quizomania
 A simple and dynamic web application example.using php,mysql,html,javascript. not much complications are involved,the code is easy to understand and provides a good understanding of web development
 
+#demo
+http://www.uecstudentclub.com/game
 
 #How it works
 The index.php on first load, initiates database table installation process. 
