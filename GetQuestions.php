@@ -11,7 +11,8 @@ if(!isset($_SESSION["username"]))
 
 $user=$_SESSION["username"];
 print "[";
-try{
+try
+{
 $c=DatabaseConnection::getConnection();
 
 
@@ -49,17 +50,16 @@ print ",";
 }
 $x++;
 
-
 }
 $c=null;
 }
-catch(PDOException $p)
+catch(PDOException $pe)
 {
-print $pe->getMessage();
+//$pe->getMessage();
 }
-catch(Exception $p)
+catch(Exception $e)
 {
-print $e->getMessage();
+//$e->getMessage();
 }
 print "]";
 ?>

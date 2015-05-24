@@ -25,6 +25,7 @@ $ps->execute();
 
 print "{\"success\":true,";
 print "\"message\":\"question added successfully\"}";
+$c=null;
 }
 
 catch(PDOException $pe)

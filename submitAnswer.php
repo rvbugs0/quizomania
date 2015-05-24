@@ -4,6 +4,7 @@ $preAttempted=null;
 $newAttempted=null;
 $newScore=null;
 $preScore=null;
+
 if(session_id()=="" && !isset($_SESSION)) session_start();
 if(!isset($_SESSION["username"]))
 {
@@ -66,6 +67,7 @@ $newAttempted=$preAttempted+1;
 $c->exec("update participants set attempted=\"$newAttempted\" where email=\"$user\"");
 
 print "{\"success\":true}";
+$c=null;
 }
 catch(PDOException $pe)
 {

@@ -1,5 +1,6 @@
 var ax=null;
 var ax1=null;
+var ax2=null;
 var questions=null;
 var correct=false;
 var currentQuestion=null;
@@ -110,9 +111,10 @@ document.getElementById("qid").innerHTML=questions[y].code;
 else
 {
 clearInterval(countdownTimer);
-document.getElementById("question").innerHTML="Completed" ; 
-document.getElementById("countdown").innerHTML="" ; 
 
+ 
+document.getElementById("countdown").innerHTML="" ; 
+requestScore(exit);
 
 
 document.getElementById("option1").style.visibility="hidden";
@@ -123,6 +125,37 @@ document.getElementById("option4").style.visibility="hidden";
 }
 
 
+
+function requestScore(p)
+{
+if(window.XMLHttpRequest)
+{
+ax2=new XMLHttpRequest();
+var link="RequestScore.php";
+ax2.open("GET",link,true);
+ax2.onreadystatechange=scoreReceived;
+ax2.send();
+}
+else
+{
+alert("Cannot continue further.Ajax not supported,please update your browser !")
+}
+
+}
+
+
+function scoreReceived()
+{
+if(ax2.readyState===4 && ax2.status===200)
+{
+var info=eval("("+ax2.responseText+")");
+if(info.success)
+{
+document.getElementById("question").innerHTML="Congratulations,you scored :  "+" ( "+info.message +" )";
+}
+
+}
+}
 
 
 /*             related to submission of answer                      */

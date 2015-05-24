@@ -1,54 +1,37 @@
 <?php
-require_once('functions.php');
 if(file_exists("DatabaseConnection.php"))
 {
-if(session_id()=="" && !isset($_SESSION))
-{
-session_start();
-}
-if(isset($_SESSION['username']))
-{
-redirect_to('gameplay.php');
-}    
+    
 ?>
 <!DOCTYPE html>
 <html>
     <head>
+<meta charset="utf-8">	
+<link type='text/css' rel='stylesheet' href='/game/styles/styles2.css' />
+<link type='text/css' rel='stylesheet' href='/game/styles/bootstyles.css' />
+<link type='text/css' rel='stylesheet' href='/game/styles/formstyles.css' />
+<script type='text/javascript' src='/game/js/RegistrationForm.js'></script>
+<script type='text/javascript' src='/game/js/form.js'></script>
+<script type='text/javascript' src='/game/js/login.js'></script>
 
-<meta charset="utf-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">	
-<link rel="icon" 
-      type="image/png" 
-      href="/game/images/favicon.png">
-<link type='text/css' rel='stylesheet' href='styles/styles2.css' />
-<link type='text/css' rel='stylesheet' href='styles/bootstyles.css' />
-<link type='text/css' rel='stylesheet' href='styles/formstyles.css' />
-<script type='text/javascript' src='js/RegistrationForm.js'></script>
-<script type='text/javascript' src='js/gameplay.js'></script>
-
-        <script type='text/javascript' src='js/form.js'></script>
-<!--
-<script type='text/javascript' src='js/login.js'></script>
--->
    </head>
 
 
 <!--      ---------------------------------------- body-------------------------------------------------------    -->	
-    <body background='images/red.jpg'>
+    <body background='/game/images/red.jpg'>
 <!--      ---------------------------------------- logo-------------------------------------------------------    -->	
 
 
-<div id="logo" class="logo" ><img id="logoimage" src='images/logo.png' /> </div>	
+<div id="logo" class="logo" ><img id="logoimage" src='/game/images/logo.png' /> </div>	
 
 
 <!--      ---------------------------------------- social-------------------------------------------------------    -->	
 
 <div id="social" >
-<a href='http://twitter.com/rvailani' target='_blank'><img id="twitter" src='images/twitter-icon.png' /></a>
-<a href='mailto:rvbugs0@gmail.com' target='_top'><img id="gmail" src='images/gmail-icon.png' /></a>
+<a href='http://twitter.com/rvailani' target='_blank'><img id="twitter" src='/game/images/twitter-icon.png' /></a>
+<a href='mailto:rvbugs0@gmail.com' target='_top'><img id="gmail" src='/game/images/gmail-icon.png' /></a>
 <a href='http://facebook.com/railani1' target='_blank'>
-<img id="facebook" src='images/facebook-icon.png' /></a>
+<img id="facebook" src='/game/images/facebook-icon.png' /></a>
 </div>
 
 
@@ -61,28 +44,30 @@ redirect_to('gameplay.php');
     </h1>
     <label>
         <span>Name :</span>
-    </label>    <input id="name" type="text" name="name" placeholder="Your Full Name"  required/>
-<label> <span>Sex :</span></label>
+    </label>    <input id="name" type="text" name="name" placeholder="Your Full Name" />
+    
 
-	<select name="selection" id="gender">
+      <label> <span>Gender : </span> </label>
+
+	<label><select name="selection" id="gender">
         <option value="M">Male</option>
         <option value="F">Female</option>
-        </select>
+        </select></label>
  
 <label>
  <span>Email :</span>
 </label>  
-   <input id="email" type="email" name="email" placeholder="Valid Email Address"  required/>
+   <input id="email" type="email" name="email" placeholder="Valid Email Address" />
 
 <label>    
         <span>College :</span>
 </label>      
-<input id="college" type="text" name="college" placeholder="Full College Name" required/>
+<input id="college" type="text" name="college" placeholder="Full College Name" />
      
  <label>
         <span>Phone:</span>
 </label>       
-<input id="phone" type="text" name="phone" placeholder="Your Mobile No." maxlength='10' minlength="10" required/>
+<input id="phone" type="text" name="phone" placeholder="Your Mobile No." maxlength='10'/>
     
        <label> <span>&nbsp;</span> 
       <input type="button" class="button" value="Register" onclick="submitRegistrationForm()"/> 
@@ -93,7 +78,6 @@ redirect_to('gameplay.php');
  </label>
 </form>
 </div>	
-
 
 
 <!--

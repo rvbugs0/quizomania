@@ -1,16 +1,9 @@
-
 <?php
-
-if(isset($_POST['username']) && isset($_POST['password']))
+if(session_id()=="" && !isset($_SESSION)) session_start();
+if(isset($_SESSION['username']))
 {
-  if(session_id()=="" && !isset($_SESSION)) session_start();
-    if(!isset($_SESSION["username"]))
-    {
-        include("InvalidAccess.php");
-        die("");
-    }
 
-?>
+    ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,7 +18,6 @@ if(isset($_POST['username']) && isset($_POST['password']))
 <script type='text/javascript' src='js/gameplay.js'></script>
 
 <script type='text/javascript' src='js/Question.js'></script>
-
 <!--      ---------------------------------------- logo-------------------------------------------------------    -->	
 
 
@@ -71,12 +63,20 @@ if(isset($_POST['username']) && isset($_POST['password']))
 <div id="qid">code:</div>
 <div id="user">user:</div>
 
-<div id="question" class="question" >Know the rules
+<div id="question" class="question" >Know the rules :
+<br>
+
+1) Each correct answer provides  a +10 lead in the score.
+<br>
+2) Each incorrect answer costs -10 in the  score. 
+<br>
+3) We hate cheaters .So please ,no Google this time !
+
 </div>
 
-<!--
+
 <div id="countdown" class="timer"></div>
--->
+
 </div>
 
 <div id="option1" class="option1" onclick="submitAnswer(this.id)"><a href="#" class="button"><span align='center'><img src="images/right.png" width="20px" height="20p" id="answerimage" /></span><div id="op1" >hurricane</div></a></div>
@@ -100,7 +100,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
 <!--      ---------------------------------------- footer-------------------------------------------------------    -->
 
 <footer>
-<div id="footer"> &copy;<a href='http://uecstudentclub.com' target='_blank'>UEC Student Club</a> 2015-2016.</div>
+<div id="footer"> &copy;<a href='http://facebook.com/railani1' target='_blank'>Ravi Ailani</a> 2015-2016.</div>
 </footer>
 
 	
