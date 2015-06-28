@@ -10,30 +10,30 @@ $attempted=0;
 try
 {
 $c= DatabaseConnection::getConnection();
-
-$ps=$c->prepare("insert into participants(name,gender,email,college,phone,password,score,attempted) values (?,?,?,?,?,md5(?),?,?)");
+$passw=substr(md5($phone),0,9);
+$ps=$c->prepare("insert into participants(name,gender,email,college,phone,password,score,attempted) values (?,?,?,?,?,?,?,?)");
 $ps->bindParam(1,$name);
 $ps->bindParam(2,$gender);
 $ps->bindParam(3,$email);
 $ps->bindParam(4,$college);
 $ps->bindParam(5,$phone);
-$ps->bindParam(6,$phone);
+$ps->bindParam(6,$passw);
 $ps->bindParam(7,$score);
 $ps->bindParam(8,$attempted);
 $ps->execute();
 
-/*
-$to = "uecstudentclub@gmail.com"; // this is your Email address
+
+$to = "example@email.com"; // this is your Email address
 $from = $email; // this is the sender's Email address
 $subject = "Registration";
-$subject2 = "Copy of your form submission";
+$subject2 = "quizomania - registration";
 $message = $name . " has registered for the game with email=$email and phone=$phone" . "\n\n" ;
-$message2 = "Hello , $name  you have successfully registered for the game, below are your login details "."Username = $email and"."Password=". md5($phone) ;
+$message2 = "Hello , $name  you have successfully registered for the game, below are your login details "."Username = $email and"." Password=". $passw ;
 $headers = "From:" . $from;
 $headers2 = "From:" . $to;
 mail($to,$subject,$message,$headers);
 mail($from,$subject2,$message2,$headers2);
-*/
+
 
 print '{';
 print "\"success\"".":"."true,";
