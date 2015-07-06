@@ -25,7 +25,7 @@ $z=0;
     foreach($rs as $row)
 {
 
-if($row['password']==$password)
+if($row['password']==md5($password))
 {
 //print "{\"success\":true}";
 $_SESSION["username"]=$username;
