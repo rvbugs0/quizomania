@@ -10,7 +10,7 @@ $attempted=0;
 try
 {
 $c= DatabaseConnection::getConnection();
-$passw=substr(md5($phone),0,9);
+$passw=uniqid();
 $ps=$c->prepare("insert into participants(name,gender,email,college,phone,password,score,attempted) values (?,?,?,?,?,md5(?),?,?)");
 $ps->bindParam(1,$name);
 $ps->bindParam(2,$gender);
