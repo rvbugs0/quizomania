@@ -25,17 +25,19 @@ include_once("functions.php");
 <!DOCTYPE html>
 <html>
     <head>
-<meta charset="utf-8">	
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+<link rel="icon" type="image/png"  href="/game/images/favicon.png">
+<script type="text/javascript" src="jquery/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+<link type="text/css" rel="stylesheet" href="bootstrap-3.3.2-dist/css/bootstrap.min.css">
 <link type='text/css' rel='stylesheet' href='styles/gameplaystyles.css' />
 <link type='text/css' rel='stylesheet' href='styles/mybutton.css' />
 <link type='text/css' rel='stylesheet' href='styles/loadingAnimation.css' />
 <link type='text/css' rel='stylesheet' href='styles/fonts.css' />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Lobster+Two' rel='stylesheet' type='text/css'>
-<script type='text/javascript' src='js/gameplay.js'></script>
-
-<script type='text/javascript' src='js/Question.js'></script>
+    <link href="font-awesome-4.3.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 <!--      ---------------------------------------- logo-------------------------------------------------------    -->	
 
 
@@ -49,32 +51,33 @@ include_once("functions.php");
 
 
 <!--      ---------------------------------------- body-------------------------------------------------------    -->	
-    <body background='images/bg.png'>
+    <body background='images/bg.png' >
 
+<div class="container">
 
+<div id="content"  >
 
-<div id="content">
+<div class="row">
+<div class="col-lg-9">
+<h2 style="padding-left:30px;">Quizomania</h2></div>
 
+<!--      ---------------------------------------- social-------------------------------------------------------    -->	
+<div class="col-lg-3 pull-right" style="padding-top:30px;">
+       <a href="logout.php"><span >Logout </span ></a>
+      <a href="http://facebook.com/railani1" target="_blank" style="color:#000;" >
+      <i class="fa fa-facebook fa-2x"  title="facebook" style="padding-left:20px;padding-right:20px;"></i></a> 
+      <a href="http://twitter.com/rvailani" target="_blank" style="color:#000">   
+      <i class="fa fa-twitter fa-2x" title="twitter" style="padding-right:20px;"></i></a>
+      <a href="https://plus.google.com/+raviailani" target="_blank" style="color:#000">   
+      <i class="fa fa-google-plus fa-2x" title="google+"  style="padding-right:20px;"></i></a>
 
-<div id="logo" class="logo" >
-<!--
-<img id="logoimage" src="/game/images/logo2.png"/>
--->		
-<span><h2>Quizomania</h2></span>
+</div> 
 
 </div>
 
 
 
-<!--      ---------------------------------------- social-------------------------------------------------------    -->	
-<div id="social" >
 
-<a href='http://twitter.com/rvailani' target='_blank'><img id="twitter" src='images/twitter-icon.png' /></a>
-<a href='mailto:rvbugs0@gmail.com' target='_top'><img id="gmail" src='images/gmail-icon.png' /></a>
-<a href='http://facebook.com/railani1' target='_blank'>
-<img id="facebook" src='images/facebook-icon.png' /></a>
-
-</div> 
 
 
 
@@ -140,17 +143,22 @@ if($gameStarted==true)
 	{
 	$question =  $questionDAO->getQuestion($attemptedQuestions+1);
 	echo $question->question ;
+	echo '</div></div>';
 	echo '<form action = "" method="POST">';
 	echo '<input type="hidden" name="answer-action" value="submit" />';
 	echo '<input type="hidden" name="code" value="'.$question->code.'" >';
-    echo '<input type="submit" name="option1" value="'.$question->option1.'" class="mybutton" />';
-	echo '<input type="submit" name="option2" value="'.$question->option2.'" class="mybutton" />';
-	echo '<input type="submit" name="option3" value="'.$question->option3.'" class="mybutton" />';
-	echo '<input type="submit" name="option4" value="'.$question->option4.'" class="mybutton" />';
+    echo '<input type="submit" name="option1" value="'.$question->option1.'" class="btn btn-default" style="margin-right:20px;" />';
+	echo '<input type="submit" name="option2" value="'.$question->option2.'" class="btn btn-default" style="margin-right:20px;" />';
+	echo '<input type="submit" name="option3" value="'.$question->option3.'" class="btn btn-default" style="margin-right:20px;" />';
+	echo '<input type="submit" name="option4" value="'.$question->option4.'" class="btn btn-default" style="margin-right:20px;" />';
 	echo '</form>';
 	echo '<div id="countdown" class="timer"></div>';
 	}
-	else
+	else if($questionCount==0)
+	{
+		echo 'No questions in database';
+	}
+	else 
 	{
 		$finalScore=$questionDAO->getScore($username);
 		echo "your score is : ".$finalScore;
@@ -169,14 +177,14 @@ else
 	 echo "3) We hate cheaters .So please ,no Google this time !"."<br/>";
 	 echo "<form action='gameplay.php' method='POST' >";
 	 echo "<input type='hidden' name='StartGame' value=1 >";
-	 echo "<input type='submit'  value='Start Game' class='mybutton'>";
-	 echo "</form>";
+	 echo "<br/><input type='submit'  value='Start Game' class='btn btn-default'>";
+	 echo "</form></div>";
 }
 
 
 ?>
 
-</div>
+
 
 
 
@@ -206,6 +214,7 @@ else
 <div id="circularG_8" class="circularG">
 </div>
 </div> 
+
 </body>
 
 
