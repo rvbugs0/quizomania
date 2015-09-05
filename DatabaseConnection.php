@@ -6,7 +6,7 @@ class DatabaseConnection
  $c=null;
  try
  {
- $c=new PDO("mysql:host=127.0.0.1;dbname=faltu","faltu","faltu");
+ $c=new PDO("mysql:host=127.0.0.1;dbname=quizomania","root","ailani");
  $c->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
  }catch(PDOException $pe)
  {

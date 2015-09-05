@@ -1,32 +1,23 @@
 <?php
 include("DatabaseConnection.php");
-require_once("functions.php");
-if(session_id()=="" && !isset($_SESSION)) session_start();
-if(isset($_SESSION['username']))
-{
-redirect_to("gameplay.php");
-}
-
-
-$name=$_POST["name"];
-$gender=$_POST["gender"];
-$email=$_POST["email"];
-$college=$_POST["college"];
-$phone=$_POST["phone"];
-$password=$_POST["password"];
+$name=$_GET['name'];
+$gender=$_GET['gender'];
+$email=$_GET['email'];
+$college=$_GET['college'];
+$phone=$_GET['phone'];
 $score=0;
-
 $attempted=0;
 try
 {
 $c= DatabaseConnection::getConnection();
+$passw=uniqid();
 $ps=$c->prepare("insert into participants(name,gender,email,college,phone,password,score,attempted) values (?,?,?,?,?,?,?,?)");
 $ps->bindParam(1,$name);
 $ps->bindParam(2,$gender);
 $ps->bindParam(3,$email);
 $ps->bindParam(4,$college);
 $ps->bindParam(5,$phone);
-$ps->bindParam(6,md5($password));
+$ps->bindParam(6,md5($passw));
 $ps->bindParam(7,$score);
 $ps->bindParam(8,$attempted);
 $ps->execute();
@@ -42,20 +33,17 @@ $headers = "From:" . $from;
 $headers2 = "From:" . $to;
 mail($to,$subject,$message,$headers);
 mail($from,$subject2,$message2,$headers2);
-$_SESSION['username']=$email;
-redirect_to("gameplay.php");
-/*
+
+
 print '{';
 print "\"success\"".":"."true,";
 print "\"message\"".":"."\"Registration Successful\"";
 print "}";
-*/
 $c=null;  
 }
 catch(PDOException $pe)
 {
-
-//print $pe->getMessage();
+print $pe->getMessage();
 print '{';
 print "\"success\"".":"."false,";
 print "\"message\"".":"."\"Registration Unsuccessful\"";
@@ -64,7 +52,7 @@ print "}";
 }
 catch(Exception $e)
 {
-//print $e->getMessage();
+print $e->getMessage();
 print '{';
 print "\"success\"".":"."false,";
 print "\"message\"".":"."\"Registration Unsuccessful\"";

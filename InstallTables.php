@@ -1,5 +1,5 @@
 <?php
-
+require_once("functions.php");
 
 //error_reporting(E_NOTICE | E_PARSE | E_NOTICE | E_ERROR | E_WARNING);
 error_reporting(E_ERROR);
@@ -13,29 +13,15 @@ $administratorUsername=$_POST["administratorUsername"];
 $administratorPassword=$_POST["administratorPassword"];
         }
 else {
-    $serverName = $_GET["serverName"];
-    $databaseName = $_GET["databaseName"];
-    $username = $_GET["username"];
-    $password = $_GET["password"];
-    $administratorUsername=$_GET["administratorUsername"];
-    $administratorPassword=$_GET["administratorPassword"];   
+   redirect_to("index.php");
 }
 
 if(InstallDO::install($serverName,$databaseName,$username,$password,$administratorUsername,$administratorPassword))
 {
-    ?>
-    {
-    "success" : true,
-    "message" : "Installation complete"
-    }
-<?php
+redirect_to("index.php");
 } else
 {
-    ?>
-    {
-    "success" : false,
-    "message" : "Invalid database details"
-    }
-<?php
+   
+   echo ' { "success" : false, "message" : "Invalid database details" }';
 }
 ?>

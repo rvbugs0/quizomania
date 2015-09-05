@@ -24,7 +24,6 @@ redirect_to('gameplay.php');
 <link type='text/css' rel='stylesheet' href='styles/styles2.css' />
 <link type='text/css' rel='stylesheet' href='styles/bootstyles.css' />
 <link type='text/css' rel='stylesheet' href='styles/formstyles.css' />
-<script type='text/javascript' src='js/RegistrationForm.js'></script>
 <script type='text/javascript' src='js/gameplay.js'></script>
 
         <script type='text/javascript' src='js/form.js'></script>
@@ -55,7 +54,7 @@ redirect_to('gameplay.php');
 <!--      ---------------------------------------- mainblock-------------------------------------------------------    -->	
 
 <div id="mainblock" class="mainblock" >
-<form method="GET" class="basic-grey" id='RegistrationForm'>
+<form method="POST" class="basic-grey" id="RegistrationForm" action="Register.php" >
     <h1>Register to Play ! 
      
     </h1>
@@ -64,7 +63,7 @@ redirect_to('gameplay.php');
     </label>    <input id="name" type="text" name="name" placeholder="Your Full Name"  required/>
 <label> <span>Sex :</span></label>
 
-	<select name="selection" id="gender">
+	<select name="gender" id="gender">
         <option value="M">Male</option>
         <option value="F">Female</option>
         </select>
@@ -73,6 +72,12 @@ redirect_to('gameplay.php');
  <span>Email :</span>
 </label>  
    <input id="email" type="email" name="email" placeholder="Valid Email Address"  required/>
+
+<label>
+ <span>Password :</span>
+</label>  
+   <input id="password" type="password" name="password" placeholder="your password" maxlength="15"  required/>
+
 
 <label>    
         <span>College :</span>
@@ -85,7 +90,7 @@ redirect_to('gameplay.php');
 <input id="phone" type="text" name="phone" placeholder="Your Mobile No." maxlength='10' minlength="10" required/>
     
        <label> <span>&nbsp;</span> 
-      <input type="button" class="button" value="Register" onclick="submitRegistrationForm()"/> 
+      <input type="submit" class="button" value="Register" /> 
 <h3 align='center'>Or</h3>
     
 <span>&nbsp;</span> 
@@ -113,10 +118,10 @@ redirect_to('gameplay.php');
 
 -->
 
-
-<div id="footer"><br><br><h3>&copy; <a href='http://uecstudentclub.com' target='_blank'>UEC Student Club</a> 2014-2015.</h3></div>
-
 </body>
+
+<footer id="footer"><br><br><h3>&copy; <a href='http://facebook.com/railani1' target='_blank'>Ravi Ailani</a></h3></footer>
+
 
 
 
