@@ -1,9 +1,26 @@
 <?php
-if(session_id()=="" && !isset($_SESSION)) session_start();
-if(isset($_SESSION['username']))
-{
 
-    ?>
+$gameStarted=false;
+if(session_id()=="" && !isset($_SESSION)) 
+{
+session_start(); 
+}
+if(!isset($_SESSION['username']))
+{
+	redirect_to("index.php");
+}
+if(isset($_POST['StartGame']))
+{
+	$_SESSION["GameStarted"]="true";
+	$gameStarted=true;
+}
+$attemptedQuestions=0;
+
+include("QuestionDAO.php");
+
+include_once("functions.php");
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,58 +67,80 @@ if(isset($_SESSION['username']))
 
 <!--      ---------------------------------------- social-------------------------------------------------------    -->	
 <div id="social" >
+
 <a href='http://twitter.com/rvailani' target='_blank'><img id="twitter" src='images/twitter-icon.png' /></a>
 <a href='mailto:rvbugs0@gmail.com' target='_top'><img id="gmail" src='images/gmail-icon.png' /></a>
 <a href='http://facebook.com/railani1' target='_blank'>
 <img id="facebook" src='images/facebook-icon.png' /></a>
+
 </div> 
 
 
 
 
 <div id="mainblock" class="mainblock" >
-<div id="qid">code:</div>
-<div id="user">user:</div>
 
-<div id="question" class="question" >Know the rules :
-<br>
 
-1) Each correct answer provides  a +10 lead in the score.
-<br>
-2) Each incorrect answer costs -10 in the  score. 
-<br>
-3) We hate cheaters .So please ,no Google this time !
+<div id="question" class="question" >
+
+
+<?php
+$gameStarted=false;
+if($_SESSION["GameStarted"]=="true")
+{
+	$gameStarted=true;
+}
+
+if($gameStarted==true)
+{
+
+	try
+	{
+	$username=$_SESSION["username"];
+	
+	$questionDAO=new QuestionDAO();
+	$attemptedQuestions=$questionDAO->getAttemptCount($username);
+	$question =  $questionDAO->getQuestion($attemptedQuestions+1);
+
+	echo $question->question ;
+	echo '<form action = "gameplay.php" method="POST">';
+    echo '<input type="submit" name="option1" value="'.$question->option1.'" class="mybutton" >';
+	echo '<input type="submit" name="option2" value="'.$question->option2.'" class="mybutton">';
+	echo '<input type="submit" name="option3" value="'.$question->option3.'" class="mybutton">';
+	echo '<input type="submit" name="option4" value="'.$question->option4.'" class="mybutton">';
+	echo '</form>';
+	echo '</div>';
+	echo '<div id="countdown" class="timer"></div></div>';
+	}catch(Exception $exception)
+	{
+		echo $exception->getMessage();
+	}
+
+}
+else
+{
+	 echo "know the rules : "."<br/>";
+	 echo "1) Each correct answer provides  a +10 lead in the score."."<br/>";
+	 echo "2) Each incorrect answer costs -10 in the  score."."<br/>";
+	 echo "3) We hate cheaters .So please ,no Google this time !"."<br/>";
+	 echo "<form action='gameplay.php' method='POST' >";
+	 echo "<input type='hidden' name='StartGame' value=1 >";
+	 echo "<input type='submit'  value='Start Game' class='mybutton'>";
+	 echo "</form>";
+}
+
+
+?>
 
 </div>
 
 
-<div id="countdown" class="timer"></div>
-
-</div>
-
-<div id="option1" class="option1" onclick="submitAnswer(this.id)"><a href="#" class="button"><span align='center'><img src="images/right.png" width="20px" height="20p" id="answerimage" /></span><div id="op1" >hurricane</div></a></div>
-
-
-<div id="option2" class="option2" onclick="submitAnswer(this.id)"><a href="#" class="button purple"><span align='center'><img src="images/right.png" width='20px' height='20px' id='answerimage'  /></span><div id="op2" >Option 2</div></a></div>
 
 
 
-
-
-<div id="option3" class="option3" onclick="submitAnswer(this.id)"><a href="#" class="button turquoise"><span align='center'><img src="images/right.png" width='20px' height='20px' id='answerimage' /></span><div id="op3">Option 3</div></a></div>
-
-
-<div id="option4" class="option4" onclick="submitAnswer(this.id)"><a href="#" class="button red"><span align='center'><img src="images/right.png" width='20px' height='20px' id='answerimage'/></span><div id="op4">Option 4</div></a></div>
-
-
-<div id="startButton" class="startButton" onclick="startGame()"><a class="button purple"><span align='center'><img src="images/right.png" width='20px' height='20px' id='answerimage'/></span><div id="op">Let's Start !</div></a></div>
-</div>
 
 <!--      ---------------------------------------- footer-------------------------------------------------------    -->
 
-<footer>
-<div id="footer"> &copy;<a href='http://facebook.com/railani1' target='_blank'>Ravi Ailani</a> 2015-2016.</div>
-</footer>
 
 	
 
@@ -129,11 +168,6 @@ if(isset($_SESSION['username']))
 
 
 </html>
-<?php
-}
 
-else
-{
-print "<H1>Looks like you are at the wrong place!</H1>";
-}
-?>
+
+

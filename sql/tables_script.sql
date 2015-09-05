@@ -13,25 +13,16 @@ Create table participants (
 	UNIQUE (password),
  Primary Key (code,email,phone,password)) ENGINE = InnoDB;
 
-Create table question (
-	code Int NOT NULL AUTO_INCREMENT,
-	question Varchar(200) NOT NULL,
-	option1 Varchar(50) NOT NULL,
-	option2 Varchar(20) NOT NULL,
-	option3 Varchar(20) NOT NULL,
-	option4 Varchar(20) NOT NULL,
-	right_answer Int NOT NULL,
-	level Int NOT NULL,
- Primary Key (code)) ENGINE = InnoDB;
 Create table question_table (
-	qcode Int NOT NULL AUTO_INCREMENT,
-	question Varchar(500) NOT NULL,
-	option1 Varchar(50) NOT NULL,
-	option2 Varchar(50) NOT NULL,
-	option3 Varchar(50) NOT NULL,
-	option4 Varchar(50) NOT NULL,
+	code Int NOT NULL AUTO_INCREMENT,
+	question text ,
+	option1 text,
+	option2 text,
+	option3 text,
+	option4 text,
 	answer Int NOT NULL,
- Primary Key (qcode)) ENGINE = InnoDB;
+	level Int NOT NULL default 0,
+ Primary Key (code)) ENGINE = InnoDB;
 Create table administrator (
 	code Int NOT NULL AUTO_INCREMENT,
 	username Char(20) NOT NULL,

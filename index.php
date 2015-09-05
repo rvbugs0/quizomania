@@ -9,32 +9,34 @@ session_start();
 if(isset($_SESSION['username']))
 {
 redirect_to('gameplay.php');
-}    
+}
+}
+else
+{
+redirect_to("InstallationForm.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-
+<head>
+<title>Quizomania</title>
 <meta charset="utf-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">	
-<link rel="icon" 
-      type="image/png" 
-      href="/game/images/favicon.png">
+<link rel="icon" type="image/png"  href="/game/images/favicon.png">
+<script type="text/javascript" src="jquery/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+<link type="text/css" rel="stylesheet" href="bootstrap-3.3.2-dist/css/bootstrap.min.css">
 <link type='text/css' rel='stylesheet' href='styles/styles2.css' />
-<link type='text/css' rel='stylesheet' href='styles/bootstyles.css' />
 <link type='text/css' rel='stylesheet' href='styles/formstyles.css' />
-<script type='text/javascript' src='js/gameplay.js'></script>
-
-        <script type='text/javascript' src='js/form.js'></script>
-<!--
-<script type='text/javascript' src='js/login.js'></script>
--->
+<script type='text/javascript' src='js/form.js'></script>
    </head>
 
 
 <!--      ---------------------------------------- body-------------------------------------------------------    -->	
     <body background='images/red.jpg'>
+
+
 <!--      ---------------------------------------- logo-------------------------------------------------------    -->	
 
 
@@ -43,12 +45,13 @@ redirect_to('gameplay.php');
 
 <!--      ---------------------------------------- social-------------------------------------------------------    -->	
 
-<div id="social" >
+<div id="social" class="pull-right">
 <a href='http://twitter.com/rvailani' target='_blank'><img id="twitter" src='images/twitter-icon.png' /></a>
 <a href='mailto:rvbugs0@gmail.com' target='_top'><img id="gmail" src='images/gmail-icon.png' /></a>
-<a href='http://facebook.com/railani1' target='_blank'>
-<img id="facebook" src='images/facebook-icon.png' /></a>
+<a href='http://facebook.com/railani1' target='_blank'><img id="facebook" src='images/facebook-icon.png' /></a>
 </div>
+
+<div class="container">
 
 
 <!--      ---------------------------------------- mainblock-------------------------------------------------------    -->	
@@ -93,34 +96,18 @@ redirect_to('gameplay.php');
       <input type="submit" class="button" value="Register" /> 
 <h3 align='center'>Or</h3>
     
+
 <span>&nbsp;</span> 
-       <input type="button" id='mybutton'  class="button" value="Already Registered?" onclick='updateForm()'/> 
+       <input type="button" id='mybutton'  class="button" value="Already Registered?" onclick='ChangeForm();'/> 
  </label>
 </form>
 </div>	
 
 
-
-<!--
-<div class="loadingdiv" id="loadingdiv">
-
-            <span></span>
-
-            <span></span>
-
-            <span></span>
-
-            <span></span>
-
-            <span></span>
-
-</div>
-
--->
+</div> <!-- container-->
 
 </body>
 
-<footer id="footer"><br><br><h3>&copy; <a href='http://facebook.com/railani1' target='_blank'>Ravi Ailani</a></h3></footer>
 
 
 
@@ -128,13 +115,3 @@ redirect_to('gameplay.php');
 
 </html>
 
-<?php
-}
-else
-{
-include("InstallationForm.php");
-//print "Complete the installation first"."<a href="/game/InstallationForm.php">Click here to inititiate installation ";
-
-}
-
-?>
