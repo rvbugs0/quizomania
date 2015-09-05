@@ -29,4 +29,14 @@ Create table administrator (
  Primary Key (code,username)) ENGINE = InnoDB;
 INSERT INTO question_table (question,option1,option2,option3,option4,answer)  VALUES ('Which of these is not a Google Inc. Product','Chrome','Tubmlr','Panorama','Glass',2),
 ('For which of the following disciplines is Nobel Prize awarded?','Physics and Chemistry','Physiology or Medicine','Literature, Peace and Economics','All of the above',4),
-('Hitler party which came into power in 1933 is known as','Labour Party','Nazi Party','Ku-Klux-Klan','Democratic Party',2);
+('Hitler party which came into power in 1933 is known as','Labour Party','Nazi Party','Ku-Klux-Klan','Democratic Party',2),
+('Who was known as Iron man of India?', 'Govind Ballabh Pant', 'Jawaharlal Nehru', 'Subhash Ch. Bose', 'Vallabhbhai Patel', 4),
+('which of these is not a Google product ?', 'Picasa', 'Tumblr', 'Chrome', 'Panoramio', 2),
+('Ms. Bachendri Pal had undertaken a unique expedition for focusing attention on which of these?', 'One Nation one Family', 'The Girl Child', 'National Integration', 'Sprit of Adventure', 4),
+('The ratio of width of our National flag to its length is', '3:4', '2:3', '3:5', '2:5', 2),
+('The words ''Satyameva Jayate'' inscribed below the base plate of the emblem of India are taken from', 'Rigveda', 'Satpath Brahmana', 'Mundak Upanishad', 'Ramayana', 3),
+('The central banking functions in India are performed by the', 'Central Bank of India', 'Reserve Bank of India', 'State Bank of India', 'Punjab National Bank', 2),
+('Development expenditure of the Central government does not include', 'defence costs', 'economic costs', 'social costs', 'grant to states', 1),
+('In the last one decade, which one among the following sectors has attracted the highest foreign direct investment inflows into India?', 'Chemicals', 'Services sector', 'Food processing', 'Telecommunication', 4),
+('The lead character in the film ''The Bandit Queen'' has been played by', 'Rupa Ganguly', 'Seema Biswas', 'Pratiba Sinha', 'Shabama Azmi', 2),
+('Who wrote the line: '' A thing of beauty is a joy forever''?', 'John Keats', 'Robert Browing', 'P.B.Shelley', 'William Wordsworth', 1);
