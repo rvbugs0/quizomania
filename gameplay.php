@@ -9,11 +9,12 @@ if(!isset($_SESSION['username']))
 {
 	redirect_to("index.php");
 }
+
 if(isset($_POST['StartGame']))
-{
-	$_SESSION["GameStarted"]="true";
+{	$_SESSION["GameStarted"]="true";
 	$gameStarted=true;
 }
+
 $attemptedQuestions=0;
 
 include("QuestionDAO.php");
@@ -86,31 +87,74 @@ include_once("functions.php");
 
 <?php
 $gameStarted=false;
-if($_SESSION["GameStarted"]=="true")
+if(isset($_SESSION["GameStarted"]))
 {
-	$gameStarted=true;
+$gameStarted=true;
 }
+if(isset($_POST['answer-action']))
+{
+if(isset($_POST['option1']))
+{
+$submittedAnswer= 1;
+}
+else if(isset($_POST['option2']))
+{
+$submittedAnswer= 2;
+}
+else if(isset($_POST['option3']))
+{
+$submittedAnswer= 3;
+}
+else if(isset($_POST['option3']))
+{
+$submittedAnswer= 4;
+}
+else
+{
+$submittedAnswer= -1;
+}
+try
+{
+	
+$questionDAO=new QuestionDAO();
+$questionDAO->submitAnswer($_SESSION['username'],$_POST['code'],$submittedAnswer);
+$questionDAO=null;
+}
+catch(Exception $exception)
+{
+echo $exception->getMessage();
+}
+
+}
+
 
 if($gameStarted==true)
 {
-
 	try
 	{
 	$username=$_SESSION["username"];
-	
-	$questionDAO=new QuestionDAO();
+	$questionDAO=new QuestionDAO();	
+	$questionCount=$questionDAO->getQuestionCount();
 	$attemptedQuestions=$questionDAO->getAttemptCount($username);
+	if($attemptedQuestions<$questionCount)
+	{
 	$question =  $questionDAO->getQuestion($attemptedQuestions+1);
-
 	echo $question->question ;
-	echo '<form action = "gameplay.php" method="POST">';
-    echo '<input type="submit" name="option1" value="'.$question->option1.'" class="mybutton" >';
-	echo '<input type="submit" name="option2" value="'.$question->option2.'" class="mybutton">';
-	echo '<input type="submit" name="option3" value="'.$question->option3.'" class="mybutton">';
-	echo '<input type="submit" name="option4" value="'.$question->option4.'" class="mybutton">';
+	echo '<form action = "" method="POST">';
+	echo '<input type="hidden" name="answer-action" value="submit" />';
+	echo '<input type="hidden" name="code" value="'.$question->code.'" >';
+    echo '<input type="submit" name="option1" value="'.$question->option1.'" class="mybutton" />';
+	echo '<input type="submit" name="option2" value="'.$question->option2.'" class="mybutton" />';
+	echo '<input type="submit" name="option3" value="'.$question->option3.'" class="mybutton" />';
+	echo '<input type="submit" name="option4" value="'.$question->option4.'" class="mybutton" />';
 	echo '</form>';
-	echo '</div>';
-	echo '<div id="countdown" class="timer"></div></div>';
+	echo '<div id="countdown" class="timer"></div>';
+	}
+	else
+	{
+		$finalScore=$questionDAO->getScore($username);
+		echo "your score is : ".$finalScore;
+	}
 	}catch(Exception $exception)
 	{
 		echo $exception->getMessage();

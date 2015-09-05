@@ -4,6 +4,60 @@ include("Question.php");
 include("DAOException.php");
 class QuestionDAO 
 {
+public function getScore($username)
+{
+$score=0;	
+try
+{
+$c=DatabaseConnection::getConnection();
+$rs=$c->query("select * from participants where email='".$username."'");
+$x=0;
+foreach ($rs as $row ) 
+{
+$score=$row["score"];
+$x++;
+}
+$rs=null;
+if($x==0)
+{
+throw new DAOException(" --> getScore()  --> Cannot retreive score");	
+}
+$c=null;
+return $score;
+}
+catch(Exception $exception)
+{
+throw new DAOException(" QuestionDAO --> getScore() ".$exception->getMessage());
+}
+}
+
+public function getQuestionCount()
+{
+$count=0;	
+try
+{
+$c=DatabaseConnection::getConnection();
+$rs=$c->query("select count(*) as cnt from question_table");
+$x=0;
+foreach ($rs as $row ) 
+{
+$count=$row["cnt"];
+$x++;
+}
+$rs=null;
+if($x==0)
+{
+throw new DAOException(" --> getQuestionCount()  --> Cannot retreive count");	
+}
+$c=null;
+return $count;
+}
+catch(Exception $exception)
+{
+throw new DAOException(" QuestionDAO --> getQuestionCount() ".$exception->getMessage());
+}
+}
+
 public function getQuestion($questionNumber)
 {
 $question=null;
@@ -59,10 +113,12 @@ foreach ($rs as $row )
 $count=$row["attempted"];
 $x++;
 }
+$rs=null;
 if($x==0)
 {
 throw new DAOException(" --> getAttemptCount()  --> Cannot retreive count");	
 }
+$c=null;
 return $count;
 }
 catch(Exception $exception)
@@ -71,7 +127,69 @@ throw new DAOException(" QuestionDAO --> getAttemptCount() ".$exception->getMess
 }
 }
 
+
+public function submitAnswer($username, $questionID , $submittedAnswer)
+{
+try
+{
+$c=DatabaseConnection::getConnection();
+$rs=$c->query("select * from question_table where code = ".$questionID);
+$x=0;
+$answer=-1;
+foreach ($rs as $row ) 
+{
+$answer=$row["answer"];
+$x++;
 }
+$rs=null;
+if($x==0)
+{
+throw new DAOException("QuestionDAO  --> submitAnswer  --> No question with the given question id");	
+}
+$rs=$c->query("select * from participants where email = '".$username."'");
+$userCode=0;
+$score=0;
+$attempted=0;
+$x=0;
+foreach ($rs as $row ) {
+	$userCode=$row["code"];
+	$score=$row["score"];
+	$attempted=$row["attempted"];
+$x++;
+}
+if($x==0)
+{
+throw new DAOException("QuestionDAO  --> submitAnswer  --> No user with given username");	
+}
+$rs=null;
+$ps=$c->prepare("update participants set score= ? , attempted=? where code=?");
+if($answer==$submittedAnswer)
+{
+	$score=$score+10;
+}
+else
+{
+	$score=$score-10;	
+}
+$attempted=$attempted+1;
+
+$ps->bindParam(1,$score);
+$ps->bindParam(2,$attempted);
+$ps->bindParam(3,$userCode);
+$ps->execute();
+$ps=null;
+$c=null;
+}
+catch(Exception $exception)
+{
+throw new DAOException(" QuestionDAO --> submitAnswer() ".$exception->getMessage());
+}
+
+
+}
+
+
+} //class ends
 
 
 ?>
