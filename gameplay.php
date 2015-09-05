@@ -108,7 +108,7 @@ else if(isset($_POST['option3']))
 {
 $submittedAnswer= 3;
 }
-else if(isset($_POST['option3']))
+else if(isset($_POST['option4']))
 {
 $submittedAnswer= 4;
 }
@@ -135,6 +135,7 @@ if($gameStarted==true)
 {
 	try
 	{
+
 	$username=$_SESSION["username"];
 	$questionDAO=new QuestionDAO();	
 	$questionCount=$questionDAO->getQuestionCount();
