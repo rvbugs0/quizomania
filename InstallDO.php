@@ -2,7 +2,7 @@
 
 class InstallDO
 {
-    static function install($serverName,$databaseName,$username,$password,$administratorUsername,$administratorPassword)
+    static function install($serverName,$databaseName,$username,$password)
     {
         $done=true;
         try
@@ -44,10 +44,6 @@ while(!file_exists("DatabaseConnection.php"))
     sleep(1);
 
 }
-$ps=$c->prepare("insert into administrator (username,password) values (?,md5(?))");
-     	$ps->bindParam(1,$administratorUsername);
-	$ps->bindParam(2,$administratorPassword);
-	$ps->execute();
             $c=null;
         $done=true;
 

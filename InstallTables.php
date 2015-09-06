@@ -9,14 +9,13 @@ if(isset($_POST["serverName"])) {
     $databaseName = $_POST["databaseName"];
     $username = $_POST["username"];
     $password = $_POST["password"];
-$administratorUsername=$_POST["administratorUsername"];
-$administratorPassword=$_POST["administratorPassword"];
+
         }
 else {
    redirect_to("index.php");
 }
 
-if(InstallDO::install($serverName,$databaseName,$username,$password,$administratorUsername,$administratorPassword))
+if(InstallDO::install($serverName,$databaseName,$username,$password))
 {
 redirect_to("index.php");
 } else

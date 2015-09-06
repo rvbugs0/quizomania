@@ -21,14 +21,8 @@
 </tr>
 <tr>
             <td>Database Password</td>
-<td><input type="password" id="password" name="password" maxlength="50" required></td>        </tr>
+<td><input type="password" id="password" name="password" maxlength="50" required></td></tr>
 
-<td>Application Administrator Username</td>
-<td><input type="text" id="administratorUsername" name="administratorUsername" maxlength="20" required></td>
-</tr>
-<tr>
-            <td>Application Administrator Password</td>
-            <td><input type="password" id="administratorPassword" name="administratorPassword" maxlength="20" required></td></tr>
            <tr>
             <td colspan="2"><input type="submit" id="installButton" value="Install"></td>
         </tr>
