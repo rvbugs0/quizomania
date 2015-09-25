@@ -31,7 +31,7 @@ $ps->bindParam(7,$score);
 $ps->bindParam(8,$attempted);
 $ps->execute();
 
-
+/*
 $to = "example@email.com"; // this is your Email address
 $from = $email; // this is the sender's Email address
 $subject = "Registration";
@@ -44,7 +44,7 @@ mail($to,$subject,$message,$headers);
 mail($from,$subject2,$message2,$headers2);
 $_SESSION['username']=$email;
 redirect_to("gameplay.php");
-/*
+
 print '{';
 print "\"success\"".":"."true,";
 print "\"message\"".":"."\"Registration Successful\"";
