@@ -42,14 +42,13 @@ $headers = "From:" . $from;
 $headers2 = "From:" . $to;
 mail($to,$subject,$message,$headers);
 mail($from,$subject2,$message2,$headers2);
-$_SESSION['username']=$email;
-redirect_to("gameplay.php");
-
 print '{';
 print "\"success\"".":"."true,";
 print "\"message\"".":"."\"Registration Successful\"";
 print "}";
 */
+$_SESSION['username']=$email;
+redirect_to("gameplay.php");
 $c=null;  
 }
 catch(PDOException $pe)
